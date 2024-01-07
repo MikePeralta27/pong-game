@@ -5,7 +5,7 @@ import  time
 
 
 r_paddle = Paddle((370, 0))
-l_paddle = Paddle((-380, 0))
+l_paddle = Paddle((-370, 0))
 ball = Ball()
 
 
@@ -28,11 +28,14 @@ while game_is_on:
     screen.update()
     ball.move()
 
-    #Detecting Collision
+    # Detecting Collision
     if ball.ycor() > 280 or ball.ycor() < -280 :
-        #needs to bounce
-        ball.bounce()
+        # needs to bounce
+        ball.bounce_y()
 
+    # Detect collision with paddle
+    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
 
 
 screen.exitonclick()
